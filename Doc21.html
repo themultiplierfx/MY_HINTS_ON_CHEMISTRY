@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HINTS ON CHEMISTRY</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#1c2440; --ink-soft:#333c5c; --parchment:#f6f1e4; --parchment-deep:#efe7d3;
+    --brass:#a67c2e; --brass-bright:#c99a3d; --slate:#5b6478; --line:#ddd3ba;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:#181c26;
+    font-family:'Literata',serif;
+    font-size:17.5px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    font-feature-settings:"kern" 1,"liga" 1;
+  }
+
+  /* cover */
+  .cover{
+    background:radial-gradient(1100px 500px at 20% 0%,#2a3560 0%,#141a30 55%,#0e1224 100%);
+    padding:90px 24px 60px;display:flex;flex-direction:column;align-items:center;
+  }
+  .cover-scene{perspective:1400px;}
+  .book{
+    width:340px;height:440px;position:relative;transform-style:preserve-3d;
+    transform:rotateY(-22deg) rotateX(3deg);
+  }
+  .book-pages{
+    position:absolute;top:8px;bottom:8px;left:6px;right:-10px;
+    background:repeating-linear-gradient(#fbf8ee,#fbf8ee 2px,#e9e2cd 2px,#e9e2cd 3px);
+    transform:translateZ(-14px);border-radius:0 3px 3px 0;
+    box-shadow:6px 6px 22px rgba(0,0,0,.45);
+  }
+  .book-spine{
+    position:absolute;left:-14px;top:0;bottom:0;width:14px;
+    background:linear-gradient(90deg,#0f142a,#1c2440);
+    transform:rotateY(90deg) translateZ(7px);
+    box-shadow:inset -3px 0 8px rgba(0,0,0,.4);
+  }
+  .book-cover{
+    position:absolute;inset:0;background:linear-gradient(160deg,#2a3560,#141a30 60%,#0e1224);
+    border:1px solid #333c5c;box-shadow:0 40px 70px -20px rgba(0,0,0,.65), 0 2px 0 rgba(255,255,255,.04) inset;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:36px 30px;
+  }
+  .cover-icon{color:#c99a3d;margin-bottom:18px;}
+  .cover-rule{width:56px;height:2px;background:var(--brass);margin:0 0 22px;}
+  .cover-rule.small{width:36px;margin:22px 0 0;}
+  .cover-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:26px;line-height:1.28;color:#f4efdf;
+    max-width:26ch;
+  }
+  .cover-sub{
+    margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;
+    color:#a9b1d6;
+  }
+  .cover-meta{margin-top:26px;color:#9aa2c2;font-family:'JetBrains Mono',monospace;font-size:12px;}
+
+  /* toc */
+  .toc{
+    max-width:640px;margin:-30px auto 0;background:#fffdf7;border:1px solid var(--line);
+    border-radius:3px;box-shadow:0 20px 40px -30px rgba(28,36,64,.4);
+    padding:26px 32px;display:flex;flex-direction:column;gap:8px;position:relative;z-index:2;
+  }
+  .toc-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--slate);margin-bottom:6px;}
+  .toc a{color:var(--ink-soft);text-decoration:none;font-size:14.5px;border-bottom:1px dotted transparent;}
+  .toc a:hover{border-bottom-color:var(--brass);color:var(--ink);}
+  .toc .toc-h2{padding-left:16px;font-size:13.5px;color:var(--slate);}
+  .toc .toc-h3{padding-left:32px;font-size:13px;color:#7c86a0;}
+
+  /* body */
+  .page{max-width:700px;margin:56px auto 40px;padding:0 24px;}
+  .doc-body h1{
+    font-family:'Fraunces',serif;font-weight:600;font-size:32px;line-height:1.2;
+    margin:52px 0 18px;color:var(--ink);
+  }
+  .doc-body h2{
+    font-family:'Fraunces',serif;font-weight:600;font-size:25px;line-height:1.25;
+    margin:44px 0 14px;color:var(--ink);border-top:1px solid var(--line);padding-top:28px;
+  }
+  .doc-body h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:19.5px;margin:32px 0 10px;color:var(--ink-soft);
+  }
+  .doc-body > *:first-child{margin-top:0;}
+  .doc-body p{margin:0 0 18px;color:#181c26;letter-spacing:.001em;}
+  .doc-body ul, .doc-body ol{margin:0 0 18px;padding-left:28px;color:#181c26;}
+  .doc-body li{margin-bottom:6px;}
+  .doc-body a{color:var(--brass);}
+  .doc-body strong{color:var(--ink);}
+  .doc-body blockquote{
+    margin:24px 0;padding:4px 0 4px 20px;border-left:3px solid var(--brass);
+    color:var(--slate);font-style:italic;
+  }
+  .doc-body hr{border:none;border-top:1px solid var(--line);margin:36px 0;}
+
+  .table-wrap{
+    overflow-x:auto;margin:30px 0;border-radius:5px;
+    border:1.5px solid var(--ink);
+    box-shadow:0 20px 36px -22px rgba(28,36,64,.55);
+  }
+  table.doc-table{
+    border-collapse:separate;border-spacing:0;width:100%;font-size:14.5px;
+    font-family:'Literata',serif;background:#fffefa;
+  }
+  table.doc-table thead th, table.doc-table tr:first-child th{
+    background:var(--ink);color:#f6f2e4;text-align:left;padding:13px 16px;font-weight:600;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.03em;
+    border-right:1px solid rgba(255,255,255,.12);
+  }
+  table.doc-table thead th:last-child{border-right:none;}
+  table.doc-table td, table.doc-table th{
+    padding:11px 16px;
+    border-bottom:1px solid #d8cca8;
+    border-right:1px solid #e7ddc0;
+    color:#181c26;
+  }
+  table.doc-table td:last-child, table.doc-table th:last-child{border-right:none;}
+  table.doc-table tbody tr:last-child td{border-bottom:none;}
+  table.doc-table tbody tr:nth-child(even){background:#f7f0dd;}
+  table.doc-table tbody tr:nth-child(odd){background:#fffefa;}
+  table.doc-table tbody tr:hover{background:#f0e3c4;}
+
+  figure.doc-image, figure.page-shot{
+    margin:36px 0;text-align:center;
+  }
+  figure.doc-image .frame, figure.page-shot .frame{
+    display:inline-block;background:#fffefb;padding:14px;border-radius:6px;
+    border:1px solid var(--line);
+    box-shadow:0 30px 50px -24px rgba(28,36,64,.55), 0 0 0 1px rgba(28,36,64,.04);
+    max-width:100%;
+  }
+  figure.doc-image img, figure.page-shot img{
+    display:block;max-width:100%;height:auto;border-radius:2px;
+    box-shadow:0 1px 3px rgba(0,0,0,.15) inset;
+  }
+  figure.doc-image figcaption, figure.page-shot figcaption{
+    margin-top:12px;font-size:12px;color:var(--slate);font-style:italic;
+    letter-spacing:.01em;
+  }
+  figure.page-shot{page-break-after:always;}
+
+  .colophon{
+    max-width:700px;margin:20px auto 60px;padding:0 24px;color:var(--slate);
+    font-size:12.5px;font-family:'JetBrains Mono',monospace;border-top:1px solid var(--line);padding-top:18px;
+  }
+
+  /* library shelf */
+  .library{display:none;max-width:900px;margin:-30px auto 0;padding:0 24px;position:relative;z-index:2;}
+  .library.active{display:block;}
+  .library-head{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    background:#fffdf7;border:1px solid var(--line);border-radius:6px 6px 0 0;
+    padding:20px 26px;box-shadow:0 20px 40px -30px rgba(28,36,64,.4);
+  }
+  .library-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--slate);}
+  .lib-search{
+    font-family:'Literata',serif;font-size:14px;padding:9px 14px;border:1px solid var(--line);
+    border-radius:20px;background:var(--parchment);color:var(--ink);min-width:200px;outline:none;
+  }
+  .lib-search:focus{border-color:var(--brass);}
+  .library-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);border-top:none;border-radius:0 0 6px 6px;
+    overflow:hidden;box-shadow:0 30px 50px -30px rgba(28,36,64,.5);
+  }
+  .lib-card{
+    display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;
+    background:#fffefb;border:none;padding:22px 20px;cursor:pointer;font-family:'Literata',serif;
+    transition:background .12s ease;min-height:150px;
+  }
+  .lib-card:hover{background:var(--parchment-deep);}
+  .lib-num{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--brass);letter-spacing:.05em;
+  }
+  .lib-card-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--ink);line-height:1.3;
+  }
+  .lib-card-snip{font-size:13px;color:var(--slate);line-height:1.5;flex:1;}
+  .lib-card-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--slate);opacity:.8;}
+
+  /* individual chapter view */
+  .chapter{display:none;max-width:700px;margin:40px auto 0;padding:0 24px;}
+  .chapter.active{display:block;}
+  .chapter-nav{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0;
+  }
+  .chapter-nav.top{margin-bottom:30px;}
+  .lib-back, .chap-step{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.02em;
+    background:transparent;border:1px solid var(--line);color:var(--ink-soft);
+    padding:8px 16px;border-radius:20px;cursor:pointer;
+  }
+  .lib-back:hover, .chap-step:hover{border-color:var(--brass);color:var(--ink);}
+  .chapter-count{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--slate);}
+  .chapter .doc-body h1:first-child, .chapter .doc-body h2:first-child{margin-top:0;border-top:none;padding-top:0;}
+
+  @media print{
+    .library{display:none !important;}
+    .chapter{display:block !important;max-width:none;}
+    .chapter-nav{display:none !important;}
+  }
+
+  @media (max-width:640px){
+    .book{width:250px;height:340px;}
+    .cover-title{font-size:20px;}
+    .doc-body h1{font-size:26px;}
+    .doc-body h2{font-size:21px;}
+    .library-grid{grid-template-columns:1fr;}
+  }
+  
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-scene">
+    <div class="book">
+      <div class="book-spine"></div>
+      <div class="book-cover">
+        <svg class="cover-icon" viewBox="0 0 40 40" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4h14l6 6v26H10z"/><path d="M24 4v6h6"/><path d="M14 18h12M14 23h12M14 28h8"/></svg>
+        <div class="cover-rule"></div>
+        <div class="cover-title">HINTS ON CHEMISTRY</div>
+        <div class="cover-sub">DOCUMENT · September 13, 2026</div>
+        <div class="cover-rule small"></div>
+      </div>
+      <div class="book-pages"></div>
+    </div>
+  </div>
+  <div class="cover-meta">182 words · ~1 min read · 3 topics</div>
+</section>
+
+<section class="library active" id="library">
+      <div class="library-head">
+        <div class="library-eyebrow">Contents · 3 topics</div>
+        <input class="lib-search" id="libSearch" type="text" placeholder="Search topics…" oninput="filterLibrary(this.value)">
+      </div>
+      <div class="library-grid" id="libraryGrid">
+        <button class="lib-card" data-title="practicals" onclick="goChapter(0)">
+          <span class="lib-num">01</span>
+          <span class="lib-card-title">PRACTICALS</span>
+          <span class="lib-card-snip"></span>
+          <span class="lib-card-meta">1 min read</span>
+        </button><button class="lib-card" data-title="eze joseph nwankwo" onclick="goChapter(1)">
+          <span class="lib-num">02</span>
+          <span class="lib-card-title">Eze Joseph NWANKWO</span>
+          <span class="lib-card-snip"></span>
+          <span class="lib-card-meta">1 min read</span>
+        </button><button class="lib-card" data-title="(ond mechanical engineering; bsc.edu.chemistry)" onclick="goChapter(2)">
+          <span class="lib-num">03</span>
+          <span class="lib-card-title">(OND Mechanical Engineering; BSC.Edu.Chemistry)</span>
+          <span class="lib-card-snip">THIS IS AN EXCEPTIONAL MATERIAL WITH SOLUTIONS TO WAEC, NECO AND UTME PAST QUESTIONS FROM 1997-2022.First publication  ©2002Second publication © 2003T…</span>
+          <span class="lib-card-meta">1 min read</span>
+        </button>
+      </div>
+    </section><section class="chapter" id="chapter-0" data-idx="0">
+        <div class="chapter-nav top">
+          <button class="lib-back" onclick="goLibrary()">&larr; Library</button>
+          <span class="chapter-count">1 / 3</span>
+        </div>
+        <div class="doc-body"><h2>PRACTICALS</h2></div>
+        <div class="chapter-nav bottom">
+          <span></span>
+          <button class="lib-back" onclick="goLibrary()">&larr; Library</button>
+          <button class="chap-step" onclick="goChapter(1)">Next &rarr;</button>
+        </div>
+      </section><section class="chapter" id="chapter-1" data-idx="1">
+        <div class="chapter-nav top">
+          <button class="lib-back" onclick="goLibrary()">&larr; Library</button>
+          <span class="chapter-count">2 / 3</span>
+        </div>
+        <div class="doc-body"><h2>Eze Joseph NWANKWO</h2></div>
+        <div class="chapter-nav bottom">
+          <button class="chap-step" onclick="goChapter(0)">&larr; Previous</button>
+          <button class="lib-back" onclick="goLibrary()">&larr; Library</button>
+          <button class="chap-step" onclick="goChapter(2)">Next &rarr;</button>
+        </div>
+      </section><section class="chapter" id="chapter-2" data-idx="2">
+        <div class="chapter-nav top">
+          <button class="lib-back" onclick="goLibrary()">&larr; Library</button>
+          <span class="chapter-count">3 / 3</span>
+        </div>
+        <div class="doc-body"><h2><em>(OND Mechanical Engineering; BSC.Edu.Chemistry)</em></h2><p><strong><em>THIS IS AN EXCEPTIONAL MATERIAL WITH SOLUTIONS TO WAEC, NECO AND UTME PAST QUESTIONS FROM 1997-2022.</em></strong></p><p><strong><em>First publication  ©2002</em></strong></p><p><strong><em>Second publication © 2003</em></strong></p><p><strong><em>Third publication © 2023 (REVISED EDITION)</em></strong></p><p><strong><em>ALL RIGHTS RESERVED. No part of this book may be reproduced, stored in a retrieval system or transmitted in any form or by any means, electronic, mechanical, photocopying, recording or otherwise without the prior permission of the publisher.</em></strong></p><p><strong><em>TEL:                    08064478733; 07025050060</em></strong></p><p><strong><em>Email:                </em></strong><a href="mailto:savodgreatgiant@gmail.com"><strong><em>savodgreatgiant@gmail.com</em></strong></a></p><p><strong><em>Website:            </em></strong><a href="http://www.savodgreatgiant.org"><strong><em>www.savodgreatgiant.org</em></strong></a></p><p><strong>ISBN:           978-978-922-737-2</strong></p><p>	</p><div class="table-wrap"><table class="doc-table"><tbody><tr><td><p><strong><em>TESTIMONIES</em></strong></p></td></tr><tr><td><p>“I was told Chemistry Practical is difficult to pass but when I came across Hints on Chemistry Practical, I realised there was no need to fear.it was as if the author was sitting directly in front of me teaching me all I needed to know about the subject.</p><p>No wonder I had “A” in Chemistry.</p><p>God bless EJAY for this great book!”</p><p><strong><em>Olawale Perfect </em></strong></p><p><strong><em>(1<sup>st</sup> class Biochemistry graduate- University of Lagos.                                                                    CEO Wigradio –an internet radio with listeners in over 110 counties. </em></strong></p><p><strong><em>He is the  best selling author:WE ARE NOT HERE TO PLAY)</em></strong></p></td></tr><tr><td><p>Hints on Chemistry Practical is precise, informative and definitely comprehensive.</p><p><strong><em>Babatunde Yakub Olalekan</em></strong></p><p><strong><em>……best waec results 2008/9 –Alimosho Grammar School Lagos State</em></strong></p></td></tr></tbody></table></div></div>
+        <div class="chapter-nav bottom">
+          <button class="chap-step" onclick="goChapter(1)">&larr; Previous</button>
+          <button class="lib-back" onclick="goLibrary()">&larr; Library</button>
+          <span></span>
+        </div>
+      </section>
+
+<footer class="colophon">Typeset automatically from the original document · Converted cleanly with full text, image, and table fidelity.</footer>
+<script>
+    (function(){
+      function showLibrary(){
+        document.querySelectorAll('.chapter').forEach(function(s){ s.classList.remove('active'); });
+        document.getElementById('library').classList.add('active');
+        window.scrollTo(0,0);
+        history.replaceState(null,'','#library');
+      }
+      function showChapter(idx){
+        document.getElementById('library').classList.remove('active');
+        document.querySelectorAll('.chapter').forEach(function(s){ s.classList.remove('active'); });
+        var el = document.getElementById('chapter-'+idx);
+        if(el){ el.classList.add('active'); window.scrollTo(0,0); history.replaceState(null,'','#chapter-'+idx); }
+      }
+      window.goLibrary = showLibrary;
+      window.goChapter = showChapter;
+      window.filterLibrary = function(q){
+        q = q.trim().toLowerCase();
+        document.querySelectorAll('.lib-card').forEach(function(card){
+          card.style.display = (!q || card.dataset.title.indexOf(q) > -1) ? '' : 'none';
+        });
+      };
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') showLibrary(); });
+      var hash = window.location.hash.replace('#','');
+      if(hash.indexOf('chapter-')===0){ showChapter(parseInt(hash.split('-')[1],10)); }
+      else { showLibrary(); }
+    })();
+    </script>
+</body>
+</html>
